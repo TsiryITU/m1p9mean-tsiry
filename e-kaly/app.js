@@ -37,14 +37,14 @@ app.use('/users', usersRouter);
 //   res.status(err.status || 500);
 //   res.render('error');
 // });
-if(process.env.MODE_ENV==="production"){
-  var distDir = "../dist/m1p9mean-tsiry";
+// if(process.env.MODE_ENV==="production"){
+  var distDir = "../dist";
   app.use(express.static(distDir));
   
   app.get("*", function (req, res) {
     res.sendFile(path.join(distDir, "index.html"))
   })
-}
+// }
 
 
 module.exports = app;
