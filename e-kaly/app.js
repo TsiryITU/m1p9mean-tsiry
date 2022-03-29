@@ -38,7 +38,7 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 if(process.env.MODE_ENV==="production"){
-  var distDir = "../dist/m1p9mean-tsiry";
+  var distDir = "../dist";
   app.use(express.static(distDir));
   
   app.get("*", function (req, res) {
