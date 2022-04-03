@@ -14,6 +14,7 @@ export class LoginService {
   }
 
   login(data: any) {
+    console.log(environment);
     var url=`${this.url}/user/login`;
     return this.http.post(url, data);
   }

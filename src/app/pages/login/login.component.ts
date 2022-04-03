@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           sessionStorage.setItem("user",user);
           switch(user.types){
           case 1:
-            this.route.navigate(['/dashboard']);
+            this.route.navigate(['/user-profile']);
             break;
           case 2:
             alert("ok resto");
