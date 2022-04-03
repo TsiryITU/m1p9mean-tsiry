@@ -1,10 +1,13 @@
 {
   "name": "angular-node",
   "version": "0.0.0",
+  "engines": {
+    "node": "^17.7.2"
+  },
   "scripts": {
     "ng": "ng",
     "postinstall": "npm run build",
-    "start": "node server.js",
+    "start": "node index.js",
     "node:dev": "nodemon -r dotenv/config . dotenv_config_path=./.env.local",
     "watch": "ng build --watch --configuration development",
     "heroku-postbuild": "npx ng build",
