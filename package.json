@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "npx nodemon index.js",
+    "node:dev": "nodemon -r dotenv/config . dotenv_config_path=./.env.local", 
+    "watch": "ng build --watch --configuration development",
+    "heroku-postbuild": "npx ng build",
     "build": "ng build --configuration production",
     "test": "ng test",
     "lint": "ng lint",
@@ -11,7 +14,6 @@
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
     "server": "node index.js",
     "client": "ng serve",
-    "watch": "ng build --watch --configuration development",
     "dev": "concurrently --kill-others-on-fail \"npm run watch\" \"npx nodemon index.js\" \"npm run client\""
   },
   "private": true,
