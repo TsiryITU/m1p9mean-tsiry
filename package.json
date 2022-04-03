@@ -12,7 +12,7 @@
     "server": "node index.js",
     "client": "ng serve",
     "watch": "ng build --watch --configuration development",
-    "dev": "concurrently --kill-others-on-fail \"npm watch\" \"npx nodemon index.js\" \"npm run client\""
+    "dev": "concurrently --kill-others-on-fail \"npm run watch\" \"npx nodemon index.js\" \"npm run client\""
   },
   "private": true,
   "dependencies": {
