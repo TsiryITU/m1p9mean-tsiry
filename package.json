@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "npx nodemon index.js",
-    "node:dev": "nodemon -r dotenv/config . dotenv_config_path=./.env.local", 
+    "node:dev": "nodemon -r dotenv/config . dotenv_config_path=./.env.local",
     "watch": "ng build --watch --configuration development",
     "heroku-postbuild": "npx ng build",
     "build": "ng build --configuration production",
