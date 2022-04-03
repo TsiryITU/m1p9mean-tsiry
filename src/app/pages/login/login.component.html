@@ -37,13 +37,13 @@
           <div class="text-center text-muted mb-4">
             <small>Sign in with credentials</small>
           </div>
-          <form role="form">
+          <div role="form">
             <div class="form-group mb-3">
               <div class="input-group input-group-alternative">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                 </div>
-                <input class="form-control" placeholder="Email" type="email" [(ngModel)]="keywords[0]">
+                <input class="form-control" placeholder="Email" type="email" [(ngModel)]="keywords.mail">
               </div>
             </div>
             <div class="form-group">
@@ -51,7 +51,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                 </div>
-                <input class="form-control" placeholder="Password" type="password" [(ngModel)]="keywords[1]">
+                <input class="form-control" placeholder="Password" type="password"  [(ngModel)]="keywords.mdp">
               </div>
             </div>
             <div class="custom-control custom-control-alternative custom-checkbox">
@@ -63,7 +63,7 @@
             <div class="text-center">
               <button type="button" class="btn btn-primary my-4" (click)="login()">Sign in</button>
             </div>
-          </form>
+          </div>
         </div>
       </div>
       <div class="row mt-3">

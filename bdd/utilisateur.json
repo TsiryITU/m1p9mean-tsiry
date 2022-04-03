@@ -1,0 +1,30 @@
+[
+    {
+        "_id": 1,
+        "username": "admin",
+        "mail": "admin@mail.com",
+        "mdp": "admin",
+        "types": 1
+    },
+    {
+        "_id": 2,
+        "username": "resto1",
+        "mail": "resto1@mail.com",
+        "mdp": "resto1",
+        "types": 2
+    },
+    {
+        "_id": 3,
+        "username": "livreur1",
+        "mail": "livreur1@mail.com",
+        "mdp": "livreur1",
+        "types": 3
+    },
+    {
+        "_id": 4,
+        "username": "client1",
+        "mail": "client1@mail.com",
+        "mdp": "client1",
+        "types": 4
+    }
+]

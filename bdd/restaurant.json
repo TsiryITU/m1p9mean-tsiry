@@ -1,0 +1,25 @@
+[
+    {
+        "_id": 1,
+        "id_utilisateur": 2,
+        "lieu": "lieu1",
+        "plats": [
+            {
+                "nom": "plat1",
+                "desc":"desc plat1",
+                "photo":"",
+                "prixA":1000.0,
+                "prixV":1500.0,
+                "dispo":1
+            },
+            {
+                "nom": "plat2",
+                "desc":"desc plat2",
+                "photo":"",
+                "prixA":2000.0,
+                "prixV":2500.0,
+                "dispo":0
+            }
+        ]
+    }
+]
