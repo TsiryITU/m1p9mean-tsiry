@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "npx nodemon index.js",
+    "postinstall": "npm run build",
+    "start": "node server.js",
     "node:dev": "nodemon -r dotenv/config . dotenv_config_path=./.env.local",
     "watch": "ng build --watch --configuration development",
     "heroku-postbuild": "npx ng build",
