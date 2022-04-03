@@ -3,9 +3,9 @@
   "version": "1.2.0",
   "scripts": {
     "ng": "ng",
+    "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
     "server": "npx nodemon index.js",
     "client": "ng serve",
-    "postinstall": "npm install",
     "start": "npm start",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
