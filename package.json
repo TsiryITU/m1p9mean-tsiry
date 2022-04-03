@@ -3,16 +3,16 @@
   "version": "1.2.0",
   "scripts": {
     "ng": "ng",
-    "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
-    "server": "npx nodemon index.js",
-    "client": "ng serve",
     "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "dev": "concurrently --kill-others-on-fail \"npm run watch\" \"npm run server\" \"ng serve\""
+    "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
+    "server": "node index.js",
+    "client": "ng serve",
+    "watch": "ng build --watch --configuration development",
+    "dev": "concurrently --kill-others-on-fail \"npm watch\" \"npx nodemon index.js\" \"npm run client\""
   },
   "private": true,
   "dependencies": {
