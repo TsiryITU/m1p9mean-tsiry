@@ -10,7 +10,7 @@
     "start": "node index.js",
     "node:dev": "nodemon -r dotenv/config . dotenv_config_path=./.env.local",
     "watch": "ng build --watch --configuration development",
-    "heroku-postbuild": "npx ng build",
+    "heroku-postbuild": "ng build --configuration production",
     "build": "ng build --configuration production",
     "test": "ng test",
     "lint": "ng lint",
