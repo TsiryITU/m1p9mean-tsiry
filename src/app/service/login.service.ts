@@ -6,7 +6,6 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class LoginService {
-  erreur: string = '';
   private url: string = environment.url
 
   constructor(private http: HttpClient) { 
@@ -14,8 +13,7 @@ export class LoginService {
   }
 
   login(data: any) {
-    console.log(environment);
-    var url=`${this.url}/user/login`;
+    var url=this.url+"/user/login";
     return this.http.post(url, data);
   }
 

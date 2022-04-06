@@ -1,16 +1,9 @@
 require('dotenv').config('../.env');
 const { MongoClient } = require("mongodb")
+const {uri,database}=require('../modules/variable')
 
-const uri = "mongodb+srv://root:root@cluster0.zeny8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 console.log(uri);
-const database = "ekaly";
-const client = new MongoClient(uri);
 
-const users = [
-    { _id: 0, username: 'Test' },
-    { _id: 1, username: 'Test 2' },
-    { _id: 2, username: 'Test 3' }
-]
 
 module.exports = {
     login: (req, res) => {
@@ -33,10 +26,10 @@ module.exports = {
                         data.erreur = err.message;
                     } else {
                         data.user = {
-                            id:result._id,
+                            id: result._id,
                             username: result.username,
-                            mail:result.mail,
-                            types:result.types
+                            mail: result.mail,
+                            types: result.types
                         };
                     }
                     res.send(JSON.stringify(data));
@@ -46,5 +39,104 @@ module.exports = {
 
         });
     },
-    findAll: (req, res) => res.json(users)
+
+    insert: (req, res) => {
+        MongoClient.connect(uri, function (err, db) {
+            var data = {
+                reponse: "ok",
+                erreur: ""
+            };
+            if (err) {
+                data.reponse = "not ok";
+                data.erreur = err.message;
+                res.send(JSON.stringify(data));
+            } else {
+                var dbo = db.db(database);
+                var donnee = req.body;
+                var objet = {
+                    username: donnee.username,
+                    mail: donnee.mail,
+                    mdp: md5(donnee.mdp),
+                    types: donnee.types
+                };
+                dbo.collection("utilisateur").insertOne(objet, function (err, result) {
+                    if (err) {
+                        data.reponse = "not ok";
+                        data.erreur = err.message;
+                    } else {
+                        data.reponse = "ok";
+                        data.erreur = "";
+                    }
+                    res.send(JSON.stringify(data));
+                    db.close();
+                });
+            }
+
+        });
+    },
+
+    update: (req, res) => {
+        MongoClient.connect(uri, function (err, db) {
+            var data = {
+                reponse: "ok",
+                erreur: ""
+            };
+            if (err) {
+                data.reponse = "not ok";
+                data.erreur = err.message;
+                res.send(JSON.stringify(data));
+            } else {
+                var dbo = db.db(database);
+                var donnee = req.body;
+                var query = { _id: donnee.id };
+                var newv = {
+                    $set: {
+                        username: donnee.username,
+                        mail: donnee.mail,
+                        mdp: md5(donnee.mdp),
+                        types: donnee.types
+                    }
+                };
+                dbo.collection("utilisateur").updateOne(query, newv, function (err, result) {
+                    if (err) {
+                        data.reponse = "not ok";
+                        data.erreur = err.message;
+                    } else {
+                        data.reponse = "ok";
+                        data.erreur = "";
+                    }
+                    res.send(JSON.stringify(data));
+                    db.close();
+                });
+            }
+        });
+
+    },
+
+    findAll: (req, res) => {
+        MongoClient.connect(uri, function (err, db) {
+            var data = {
+                users: null,
+                reponse: "ok",
+                erreur: ""
+            };
+            if (err) {
+                data.reponse = "not ok";
+                data.erreur = err.message;
+                res.send(JSON.stringify(data));
+            } else {
+                var dbo = db.db(database);
+                dbo.collection("utilisateur").find({}, { projection: { mdp:0 } }).toArray(function (err, result) {
+                    if (err) {
+                        data.reponse = "not ok";
+                        data.erreur = err.message;
+                    } else {
+                        data.users = result;
+                    }
+                    res.send(JSON.stringify(data));
+                    db.close();
+                });
+            }
+        });
+    }
 }

@@ -9,16 +9,15 @@
     "postinstall": "npm run build",
     "start": "node index.js",
     "node:dev": "nodemon -r dotenv/config . dotenv_config_path=./.env.local",
-    "watch": "ng build --watch --configuration development",
     "heroku-postbuild": "ng build --configuration production",
-    "build": "ng build --configuration production",
+    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
-    "server": "node index.js",
-    "client": "ng serve",
-    "dev": "concurrently --kill-others-on-fail \"npm run watch\" \"npx nodemon index.js\" \"npm run client\""
+    "server": "ng build --configuration development && nodemon index.js",
+    "client": "ng serve --configuration development",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
   },
   "private": true,
   "dependencies": {

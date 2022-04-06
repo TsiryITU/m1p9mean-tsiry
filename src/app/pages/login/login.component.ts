@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   erreur: string = '';
   constructor(private service: LoginService, private route: Router) {
     this.keywords = {mail:'admin@mail.com', mdp:'admin'};
-    console.log(this.keywords);
+    sessionStorage.clear();
   }
 
   ngOnInit() {
@@ -20,17 +20,21 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
   }
   login(){
+    console.log(this.keywords);
     const obs = {
       next: (x) =>{
-        if(x.user!=null){
+        if(x.reponse=="ok" && x.erreur=="" && x.user!=null){
           var user=x.user;
-          sessionStorage.setItem("user",user);
+          sessionStorage.setItem("id",user.id);
+          sessionStorage.setItem("username",user.username);
+          sessionStorage.setItem("mail",user.mail);
+          sessionStorage.setItem("types",user.types);
           switch(user.types){
           case 1:
-            this.route.navigate(['/user-profile']);
+            this.route.navigate(['/user-profile/1']);
             break;
           case 2:
-            alert("ok resto");
+            this.route.navigate(['/resto-profil']);
             break;
           case 3:
             alert("ok livreur");
@@ -41,11 +45,12 @@ export class LoginComponent implements OnInit, OnDestroy {
           default:
             alert("there is an error");
           }
-        }else{
+        }
+        else{
           alert("profil not found");
         }
       },
-      error: (err: Error) => alert(err),
+      error: (err: Error) => alert(err.message),
     };
     this.service.login(this.keywords).subscribe(obs);
   }

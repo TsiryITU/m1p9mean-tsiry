@@ -2,6 +2,7 @@
     {
         "_id": 1,
         "id_utilisateur": 2,
+        "nom":"resto1",
         "lieu": "lieu1",
         "plats": [
             {

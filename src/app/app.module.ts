@@ -12,6 +12,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
+import { ListeUserComponent } from './pages/liste-user/liste-user.component';
+import { RestoProfilComponent } from './pages/resto-profil/resto-profil.component';
+import { ListePlatComponent } from './pages/liste-plat/liste-plat.component';
+import { PlatProfilComponent } from './pages/plat-profil/plat-profil.component';
 
 
 @NgModule({
@@ -27,7 +31,11 @@ import { ComponentsModule } from './components/components.module';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    ListeUserComponent,
+    RestoProfilComponent,
+    ListePlatComponent,
+    PlatProfilComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
