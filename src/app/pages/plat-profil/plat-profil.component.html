@@ -35,7 +35,7 @@
                   <div class="col-lg-6">
                     <div class="form-group">
                       <label class="form-control-label" for="input-username">Nom</label>
-                      <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="Username" [(ngModel)]="keywords.nom" required="required">
+                      <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="Nom" [(ngModel)]="keywords.nom" required="required">
                     </div>
                   </div>
                   <div class="col-lg-6">
@@ -66,8 +66,11 @@
                     </div>
                   </div>
                   <div class="col-lg-6">
-                    <div class="form-group" >
+                    <div class="form-group" *ngIf="action==1">
                       <button type="button" class="btn btn-secondary" (click)="insert()">Insert</button>
+                    </div>
+                    <div class="form-group" *ngIf="action==2">
+                      <button type="button" class="btn btn-secondary" (click)="update()">Update</button>
                     </div>
                   </div>
                 </div>

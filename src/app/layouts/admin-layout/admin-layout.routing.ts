@@ -13,5 +13,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'liste-user', component: ListeUserComponent },
     { path: 'resto-profil', component: RestoProfilComponent },
     { path: 'liste-plat', component: ListePlatComponent },
-    { path: 'plat-profil', component: PlatProfilComponent }
+    { path: 'plat-profil/:act', component: PlatProfilComponent },
+    { path: 'plat-profil/:act/:id', component: PlatProfilComponent }
 ];

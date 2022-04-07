@@ -19,4 +19,14 @@ export class RestoService {
     var url=this.url+"/resto/find/"+data.id_utilisateur;
     return this.http.get(url);
   }
+
+  insertPlat(data:any){
+    var url=this.url+"/resto/plat/insert";
+    return this.http.post(url,data);
+  }
+
+  updatePlat(data:any){
+    var url=this.url+"/resto/plat/update";
+    return this.http.post(url,data);
+  }
 }

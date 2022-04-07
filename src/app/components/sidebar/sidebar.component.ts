@@ -21,7 +21,7 @@ switch (parseInt(sessionStorage.getItem("types"))) {
       { path: '/user-profile/1', title: 'User profile', icon: 'ni-single-02 text-yellow', class: '' },
       { path: '/resto-profil', title: 'Restaurant profile', icon: 'ni-box-2  text-yellow', class: '' },
       { path: '/liste-plat', title: 'Liste plats', icon: 'ni-bullet-list-67  text-yellow', class: '' },
-      { path: '/plat-profil', title: 'Plat', icon: 'ni-bullet-list-67  text-yellow', class: '' },
+      { path: '/plat-profil/insert', title: 'Plat', icon: 'ni-bullet-list-67  text-yellow', class: '' },
     ];
     break;
 }
