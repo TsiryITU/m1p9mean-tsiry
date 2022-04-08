@@ -16,6 +16,9 @@ import { ListeUserComponent } from './pages/liste-user/liste-user.component';
 import { RestoProfilComponent } from './pages/resto-profil/resto-profil.component';
 import { ListePlatComponent } from './pages/liste-plat/liste-plat.component';
 import { PlatProfilComponent } from './pages/plat-profil/plat-profil.component';
+import { ListeRestoComponent } from './pages/liste-resto/liste-resto.component';
+import { ListePlatVenteComponent } from './pages/liste-plat-vente/liste-plat-vente.component';
+import { PanierComponent } from './pages/panier/panier.component';
 
 
 @NgModule({
@@ -35,7 +38,10 @@ import { PlatProfilComponent } from './pages/plat-profil/plat-profil.component';
     ListeUserComponent,
     RestoProfilComponent,
     ListePlatComponent,
-    PlatProfilComponent
+    PlatProfilComponent,
+    ListeRestoComponent,
+    ListePlatVenteComponent,
+    PanierComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

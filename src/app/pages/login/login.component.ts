@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             alert("ok livreur");
             break;
           case 4:
-            alert("ok client");
+            this.route.navigate(['/liste-resto']);
             break;
           default:
             alert("there is an error");

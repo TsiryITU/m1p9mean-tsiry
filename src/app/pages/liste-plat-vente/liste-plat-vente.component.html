@@ -1,0 +1,52 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+        <div class="header-body">
+            <!-- Card stats -->
+            <div class="row">
+                <div class="col-xl-3 col-lg-6" style="margin-top: 10px;" *ngFor="let plat of plats;let i=index">
+                    <div class="card  mb-4 mb-xl-0" *ngIf="plat.dispo===1">
+                        <div class="card-body">
+                            <img class="card-img-top" src="{{plat.photo}}" alt="Card image cap">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="row">
+                                        <h5 class="card-title">{{plat.nom}}</h5>
+                                    </div>
+                                </div>
+                                <p class="card-text">{{plat.desc}}</p>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <h5 class="card-title text-uppercase text-muted mb-0">Prix de vente</h5>
+                                    <span class="h2 font-weight-bold mb-0">{{plat.prixV}}</span>
+                                </div>
+                            </div>
+                            <a class="btn btn-primary" (click)="openPopup(i)">Commander</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{nomPlat}}</h4>
+            </div>
+            <div class="modal-body">
+                <span class="h2 font-weight-bold mb-0">{{prixV}} X</span>
+                <span> <input type="number" style="margin-left: 5px;" [(ngModel)]="nbre" required="required" (change)="calculPrix()" min="0"> = </span>  <span class="h2 font-weight-bold mb-0">{{prixT}}</span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="closePopup()">
+                    Cancel
+                </button>
+                <button type="button" class="btn btn-primary" (click)="valideCommande()">
+                    Ok
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

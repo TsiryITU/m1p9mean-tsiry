@@ -29,4 +29,14 @@ export class RestoService {
     var url=this.url+"/resto/plat/update";
     return this.http.post(url,data);
   }
+
+  findPlats(id:number){
+    var url=this.url+"/resto/plat/findAll/"+id;
+    return this.http.get(url);
+  }
+
+  findAll(){
+    var url=this.url+"/resto/findAll";
+    return this.http.get(url);
+  }
 }

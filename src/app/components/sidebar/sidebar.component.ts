@@ -24,6 +24,13 @@ switch (parseInt(sessionStorage.getItem("types"))) {
       { path: '/plat-profil/insert', title: 'Plat', icon: 'ni-bullet-list-67  text-yellow', class: '' },
     ];
     break;
+  case 4:
+    r=[
+      { path: '/user-profile/1', title: 'User profile', icon: 'ni-single-02 text-yellow', class: '' },
+      { path: '/liste-resto', title: 'Liste des restaurants', icon: 'ni-bullet-list-67 text-yellow', class: '' },
+      { path: '/panier', title: 'Panier', icon: 'ni-basket text-yellow', class: '' },
+    ];
+    break;
 }
 
 export const ROUTES: RouteInfo[] = r;

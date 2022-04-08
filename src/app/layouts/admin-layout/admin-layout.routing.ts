@@ -6,6 +6,9 @@ import { ListeUserComponent } from 'src/app/pages/liste-user/liste-user.componen
 import { RestoProfilComponent } from 'src/app/pages/resto-profil/resto-profil.component';
 import { ListePlatComponent } from 'src/app/pages/liste-plat/liste-plat.component';
 import { PlatProfilComponent } from 'src/app/pages/plat-profil/plat-profil.component';
+import { ListeRestoComponent } from 'src/app/pages/liste-resto/liste-resto.component';
+import { ListePlatVenteComponent } from 'src/app/pages/liste-plat-vente/liste-plat-vente.component';
+import { PanierComponent } from 'src/app/pages/panier/panier.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard', component: DashboardComponent },
@@ -14,5 +17,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'resto-profil', component: RestoProfilComponent },
     { path: 'liste-plat', component: ListePlatComponent },
     { path: 'plat-profil/:act', component: PlatProfilComponent },
-    { path: 'plat-profil/:act/:id', component: PlatProfilComponent }
+    { path: 'plat-profil/:act/:id', component: PlatProfilComponent },
+    { path: 'liste-resto', component: ListeRestoComponent },
+    { path: 'liste-plat/:id', component: ListePlatVenteComponent },
+    { path: 'panier', component: PanierComponent }
 ];
