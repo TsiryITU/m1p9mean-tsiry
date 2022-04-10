@@ -26,7 +26,7 @@ export class PlatProfilComponent implements OnInit {
   initialisation(){
     const routeParams = this.route.snapshot.paramMap;
     const act = routeParams.get('act');
-    var resto=JSON.parse(localStorage.getItem('resto'));
+    var resto=JSON.parse(sessionStorage.getItem('resto'));
     switch(act){
       case "insert":
         this.keywords={

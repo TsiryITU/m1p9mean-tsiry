@@ -14,6 +14,7 @@ switch (parseInt(sessionStorage.getItem("types"))) {
       { path: '/user-profile/1', title: 'User profile', icon: 'ni-single-02 text-yellow', class: '' },
       { path: '/user-profile/2', title: 'Insert user', icon: 'ni-single-02 text-yellow', class: '' },
       { path: '/liste-user', title: 'User liste', icon: 'ni-single-02 text-yellow', class: '' },
+      { path: '/commande/admin', title: 'Liste des commandes', icon: 'ni-single-02 text-yellow', class: '' }
     ];
     break;
   case 2:
@@ -22,13 +23,14 @@ switch (parseInt(sessionStorage.getItem("types"))) {
       { path: '/resto-profil', title: 'Restaurant profile', icon: 'ni-box-2  text-yellow', class: '' },
       { path: '/liste-plat', title: 'Liste plats', icon: 'ni-bullet-list-67  text-yellow', class: '' },
       { path: '/plat-profil/insert', title: 'Plat', icon: 'ni-bullet-list-67  text-yellow', class: '' },
+      { path: '/commande/resto', title: 'Liste des commandes', icon: 'ni-bullet-list-67  text-yellow', class: '' }
     ];
     break;
   case 4:
     r=[
       { path: '/user-profile/1', title: 'User profile', icon: 'ni-single-02 text-yellow', class: '' },
       { path: '/liste-resto', title: 'Liste des restaurants', icon: 'ni-bullet-list-67 text-yellow', class: '' },
-      { path: '/panier', title: 'Panier', icon: 'ni-basket text-yellow', class: '' },
+      { path: '/panier', title: 'Panier', icon: 'ni-basket text-yellow', class: '' }
     ];
     break;
 }

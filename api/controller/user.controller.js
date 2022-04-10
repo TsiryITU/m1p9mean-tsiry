@@ -1,9 +1,9 @@
 require('dotenv').config('../.env');
-const { MongoClient } = require("mongodb")
-const {uri,database}=require('../modules/variable')
+const { MongoClient } = require("mongodb");
+const { sha1 } = require('../modules/function/fonction');
+const { uri, database } = require('../modules/variable')
 
 console.log(uri);
-
 
 module.exports = {
     login: (req, res) => {
@@ -41,7 +41,7 @@ module.exports = {
     },
 
     insert: (req, res) => {
-        MongoClient.connect(uri, function (err, db) {
+        MongoClient.connect(uri, async function (err, db) {
             var data = {
                 reponse: "ok",
                 erreur: ""
@@ -53,25 +53,31 @@ module.exports = {
             } else {
                 var dbo = db.db(database);
                 var donnee = req.body;
-                var objet = {
-                    username: donnee.username,
-                    mail: donnee.mail,
-                    mdp: md5(donnee.mdp),
-                    types: donnee.types
-                };
-                dbo.collection("utilisateur").insertOne(objet, function (err, result) {
-                    if (err) {
-                        data.reponse = "not ok";
-                        data.erreur = err.message;
-                    } else {
-                        data.reponse = "ok";
-                        data.erreur = "";
+                let id = -1;
+                dbo.collection('counters').findOneAndUpdate({_id: "id_utilisateur"}, {$inc: {sequence_value: 1}},{upsert: true,returnOriginal: false}, 
+                function (err, result) {
+                        id = result.value.sequence_value;
+                        var objet = {
+                            _id: id,
+                            username: donnee.username,
+                            mail: donnee.mail,
+                            mdp: sha1(donnee.mdp),
+                            types: donnee.types
+                        };
+                        dbo.collection("utilisateur").insertOne(objet, function (err, result) {
+                            if (err) {
+                                data.reponse = "not ok";
+                                data.erreur = err.message;
+                            } else {
+                                data.reponse = "ok";
+                                data.erreur = "";
+                            }
+                            res.send(JSON.stringify(data));
+                            db.close();
+                        });
                     }
-                    res.send(JSON.stringify(data));
-                    db.close();
-                });
+                );
             }
-
         });
     },
 
@@ -126,7 +132,7 @@ module.exports = {
                 res.send(JSON.stringify(data));
             } else {
                 var dbo = db.db(database);
-                dbo.collection("utilisateur").find({}, { projection: { mdp:0 } }).toArray(function (err, result) {
+                dbo.collection("utilisateur").find({}, { projection: { mdp: 0 } }).toArray(function (err, result) {
                     if (err) {
                         data.reponse = "not ok";
                         data.erreur = err.message;

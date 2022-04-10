@@ -3,6 +3,109 @@ const { uri, database } = require('../modules/variable')
 
 module.exports = {
 
+    insert: (req, res) => {
+        MongoClient.connect(uri, function (err, db) {
+            var data = {
+                reponse: "ok",
+                erreur: ""
+            };
+            if (err) {
+                data.reponse = "not ok";
+                data.erreur = err.message;
+                res.send(JSON.stringify(data));
+            }
+            else {
+                var dbo = db.db(database);
+                var donnee = req.body;
+                let id_user = -1;
+
+                dbo.collection('counters').findOneAndUpdate({ _id: "id_utilisateur" }, { $inc: { sequence_value: 1 } }, { upsert: true, returnOriginal: false },
+                    function (err, result) {
+                        id_user = result.value.sequence_value;
+                        var objet = {
+                            _id: id_user,
+                            username: donnee.username,
+                            mail: donnee.mail,
+                            mdp: sha1(donnee.mdp),
+                            types: 2
+                        };
+                        dbo.collection("utilisateur").insertOne(objet, function (err, result) {
+                            if (err) {
+                                data.reponse = "not ok";
+                                data.erreur = err.message;
+                            } else {
+                                dbo.collection('counters').findOneAndUpdate({ _id: "id_restaurant" }, { $inc: { sequence_value: 1 } }, { upsert: true, returnOriginal: false },
+                                    function (err, result) {
+                                        id = result.value.sequence_value;
+                                        var objet = {
+                                            _id: id,
+                                            id_utilisateur:id_user,
+                                            lieu: '',
+                                            nom: donnee.username
+                                        };
+                                        dbo.collection("restaurant").insertOne(objet, function (err, result) {
+                                            if (err) {
+                                                data.reponse = "not ok";
+                                                data.erreur = err.message;
+                                            } else {
+                                                data.reponse = "ok";
+                                                data.erreur = "";
+                                            }
+                                            res.send(JSON.stringify(data));
+                                            db.close();
+                                        });
+                                    }
+                                );
+                            }
+                        });
+                    }
+                );
+            }
+        });
+    },
+
+    insertPanier: (req, res) => {
+        MongoClient.connect(uri, function (err, db) {
+            var data = {
+                reponse: "ok",
+                erreur: ""
+            };
+            if (err) {
+                data.reponse = "not ok";
+                data.erreur = err.message;
+                res.send(JSON.stringify(data));
+            }
+            else {
+                var dbo = db.db(database);
+                var donnee = req.body;
+                let id = -1;
+                dbo.collection('counters').findOneAndUpdate({ _id: "id_commande" }, { $inc: { sequence_value: 1 } }, { upsert: true, returnOriginal: false },
+                    function (err, result) {
+                        id = result.value.sequence_value;
+                        var objet = {
+                            _id: id,
+                            date: Date.now,
+                            lieu: donnee.lieu,
+                            id_restaurant: donnee.id_restaurant,
+                            plats: donnee.plats
+                        };
+                        dbo.collection("commande").insertOne(objet, function (err, result) {
+                            if (err) {
+                                data.reponse = "not ok";
+                                data.erreur = err.message;
+                            } else {
+                                data.reponse = "ok";
+                                data.erreur = "";
+                            }
+                            res.send(JSON.stringify(data));
+                            db.close();
+                        });
+                    }
+                );
+            }
+        });
+    },
+
     findPlats: (req, res) => {
         MongoClient.connect(uri, function (err, db) {
             var data = {

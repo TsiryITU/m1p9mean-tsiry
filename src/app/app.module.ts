@@ -19,6 +19,8 @@ import { PlatProfilComponent } from './pages/plat-profil/plat-profil.component';
 import { ListeRestoComponent } from './pages/liste-resto/liste-resto.component';
 import { ListePlatVenteComponent } from './pages/liste-plat-vente/liste-plat-vente.component';
 import { PanierComponent } from './pages/panier/panier.component';
+import { ListeCommandeComponent } from './pages/liste-commande/liste-commande.component';
+import { ListeCommandeLivreComponent } from './pages/liste-commande-livre/liste-commande-livre.component';
 
 
 @NgModule({
@@ -41,7 +43,9 @@ import { PanierComponent } from './pages/panier/panier.component';
     PlatProfilComponent,
     ListeRestoComponent,
     ListePlatVenteComponent,
-    PanierComponent
+    PanierComponent,
+    ListeCommandeComponent,
+    ListeCommandeLivreComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

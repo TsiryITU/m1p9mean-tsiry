@@ -21,7 +21,7 @@ export class RestoProfilComponent implements OnInit {
   }
 
   initialisation() {
-    localStorage.removeItem("resto");
+    sessionStorage.removeItem("resto");
     var donnee = {
       id_utilisateur: parseInt(sessionStorage.getItem("id"))
     };
@@ -34,7 +34,7 @@ export class RestoProfilComponent implements OnInit {
             this.keywords.id = resto._id;
             this.keywords.nom = resto.nom;
             this.keywords.lieu = resto.lieu;
-            localStorage.setItem("resto",JSON.stringify(resto));
+            sessionStorage.setItem("resto",JSON.stringify(resto));
             return true;
           }
           return false;

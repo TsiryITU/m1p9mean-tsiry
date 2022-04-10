@@ -1,0 +1,58 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+        <div class="header-body">
+            <!-- Card stats -->
+            <div class="row">
+                <div class="col-xxl-3 col-lg-6" *ngFor="let commande of commandes;let i=index">
+                    <div class="card card-stats mb-4 mb-xl-0">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <h5 class="card-title text-uppercase text-muted mb-0">Date</h5>
+                                    <span class="h2 font-weight-bold mb-0">{{commande.date.split("T")[0]+"
+                                        "+commande.date.split("T")[1].split(".")[0]}}</span>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 10px;">
+                                <div class="col">
+                                    <h5 class="card-title text-uppercase text-muted mb-0">Lieu</h5>
+                                    <span class="h2 font-weight-bold mb-0">{{commande.lieu}}</span>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 10px;">
+                                <div class="col">
+                                    <h5 class="card-title text-uppercase text-muted mb-0">Liste des plats</h5>
+                                    <div class="card shadow">
+                                        <div class="table-responsive">
+                                            <!-- Projects table -->
+                                            <table class="table align-items-center table-flush">
+                                                <tbody>
+                                                    <tr *ngFor="let plat of commande.plats">
+                                                        <th scope="row">
+                                                            {{plat.nom}}
+                                                        </th>
+                                                        <td>
+                                                            {{plat.quantite}}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 10px;">
+                                <div class="col">
+                                    <button class="btn btn-primary" (click)="livrer(i)">Livrer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="container-fluid mt--7">
+
+</div> -->

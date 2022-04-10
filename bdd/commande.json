@@ -1,0 +1,42 @@
+[
+    {
+        "_id": 1,
+        "date": {
+            "$date": "2022-03-09T10:00:00Z"
+        },
+        "lieu": "Bio 33",
+        "id_utilisateur": 4,
+        "id_resto": 1,
+        "plats": [
+            {
+                "nom": "plat1",
+                "photo": "",
+                "quantite": 3,
+                "prixT": 4500.0
+            }
+        ],
+        "prixT": 4500.0,
+        "frais": 5000,
+        "etat": 0
+    },
+    {
+        "_id": 2,
+        "date": {
+            "$date": "2022-03-10T10:00:00Z"
+        },
+        "lieu": "Bio 33",
+        "id_utilisateur": 4,
+        "id_resto": 1,
+        "plats": [
+            {
+                "nom": "plat1",
+                "photo": "",
+                "quantite": 3,
+                "prixT": 4500.0
+            }
+        ],
+        "prixT": 4500.0,
+        "frais": 5000,
+        "etat": 0
+    }
+]

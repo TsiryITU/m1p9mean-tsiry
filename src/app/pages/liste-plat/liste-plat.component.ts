@@ -21,7 +21,7 @@ export class ListePlatComponent implements OnInit {
   }
 
   initialisation(){
-    localStorage.removeItem("resto");
+    sessionStorage.removeItem("resto");
     var donnee = {
       id_utilisateur: parseInt(sessionStorage.getItem("id"))
     };
@@ -32,7 +32,7 @@ export class ListePlatComponent implements OnInit {
           if (x.resto != null) {
             var resto = x.resto;
             this.plats=resto.plats;
-            localStorage.setItem("resto",JSON.stringify(resto));
+            sessionStorage.setItem("resto",JSON.stringify(resto));
             return true;
           }
           return false;

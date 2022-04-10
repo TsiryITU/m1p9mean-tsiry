@@ -22,7 +22,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let p of plats;let i=index" >
+                                <tr *ngFor="let p of plats;let i=index">
                                     <th scope="row">
                                         <div class="media align-items-center">
                                             <a href="javascript:void(0)" class="avatar rounded-circle mr-3">
@@ -34,7 +34,9 @@
                                         </div>
                                     </th>
                                     <td>
-                                        {{p.quantite}}
+                                        <input type="number" id="input-username"
+                                                class="form-control form-control-alternative"
+                                                [(ngModel)]="p.quantite" required="required" min="1" (change)="change(i)">
                                     </td>
                                     <td>
                                         {{p.prixU}}
@@ -55,8 +57,15 @@
                                 <tbody>
                                     <td>Total :</td>
                                     <td>{{nbreT}}</td>
-                                    <td></td>
                                     <td>{{prixT}}</td>
+                                    <td>
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-username">Lieu</label>
+                                            <input type="number" id="input-username"
+                                                class="form-control form-control-alternative" placeholder="lieu"
+                                                [(ngModel)]="lieu" required="required">
+                                        </div>
+                                    </td>
                                     <td><button class="btn btn-primary" (click)="validerPanier()">valider</button></td>
                                 </tbody>
                             </table>

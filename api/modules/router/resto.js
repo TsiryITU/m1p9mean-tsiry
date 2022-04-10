@@ -1,4 +1,4 @@
-const { update,findByUser,insertPlat,updatePlat,findPlats,findAll } = require('../../controller/resto-controller')
+const { update,findByUser,insertPlat,updatePlat,findPlats,findAll,insertPanier,insert} = require('../../controller/resto-controller')
 
 const RestoRouter = (url, app) => {
     app.post(`${url}/resto/update`, update)
@@ -7,6 +7,8 @@ const RestoRouter = (url, app) => {
     app.post(`${url}/resto/plat/update`, updatePlat)
     app.get(`${url}/resto/plat/findAll/:id`, findPlats)
     app.get(`${url}/resto/findAll`, findAll)
+    app.post(`${url}/resto/panier/insert`, insertPanier)
+    app.post(`${url}/resto/insert`, insert)
 
 }
 

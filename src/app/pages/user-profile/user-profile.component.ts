@@ -132,6 +132,6 @@ export class UserProfileComponent implements OnInit {
       },
       error: (err: Error) => alert(err.message),
     };
-    this.service.update(this.keywords).subscribe(obs);
+    this.service.insert(this.keywords).subscribe(obs);
   }
 }
