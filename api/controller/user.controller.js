@@ -48,7 +48,7 @@ module.exports = {
             } else {
                 var dbo = db.db(database);
                 var donnee = req.body;
-                dbo.collection("utilisateur").findOne({ mail: donnee.mail, mdp: donnee.mdp }, function (err, result) {
+                dbo.collection("utilisateur").findOne({ mail: donnee.mail, mdp: sha1(donnee.mdp) }, function (err, result) {
                     if (err) {
                         data.reponse = "not ok";
                         data.erreur = err.message;
@@ -127,12 +127,13 @@ module.exports = {
             } else {
                 var dbo = db.db(database);
                 var donnee = req.body;
+                console.log(donnee);
                 var query = { _id: donnee.id };
                 var newv = {
                     $set: {
                         username: donnee.username,
                         mail: donnee.mail,
-                        mdp: md5(donnee.mdp),
+                        mdp: sha1(donnee.mdp),
                         types: donnee.types
                     }
                 };

@@ -12,6 +12,7 @@ export class ListeUserComponent implements OnInit {
 
   liste: Array<{ id: string, username: string, mail: string, types: number, type: string }> = [];
   constructor(private service: UserService,private router: Router) {
+    sessionStorage.removeItem("updateUser");
     const obs = {
       next: (x) => {
         if (x.reponse == "ok") {
@@ -47,6 +48,7 @@ export class ListeUserComponent implements OnInit {
 
   update(indice:number){
     this.donnee=this.liste[indice];
+    sessionStorage.setItem("updateUser",JSON.stringify(this.donnee));
     this.router.navigate(["/user-profile/3"]);
   }
 

@@ -32,7 +32,7 @@
             <div class="pl-lg-4">
               <div class="row">
                 <div class="col-lg-6">
-                  <div class="form-group" *ngIf="initialisation()">
+                  <div class="form-group">
                     <label class="form-control-label" for="input-username">Username</label>
                     <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="Username" [(ngModel)]="keywords.username" required="required">
                   </div>
@@ -58,14 +58,14 @@
                   </div>
                 </div>
                 <div class="col-lg-6">
-                  <div class="form-group" *ngIf="initialisation()==1">
+                  <div class="form-group" *ngIf="act==1">
                     <button type="button" class="btn btn-secondary" (click)="update()">Update</button>
                   </div>
-                  <div class="form-group" *ngIf="initialisation()==2">
+                  <div class="form-group" *ngIf="act==2">
                     <button type="button" class="btn btn-secondary" (click)="insert()">Insert</button>
                   </div>
-                  <div class="form-group" *ngIf="initialisation()==3">
-                    <button type="button" class="btn btn-secondary" (click)="modif()">Insert</button>
+                  <div class="form-group" *ngIf="act==3">
+                    <button type="button" class="btn btn-secondary" (click)="modif()">Update</button>
                   </div>
                 </div>
               </div>

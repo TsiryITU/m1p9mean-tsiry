@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute,Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/service/user.service';
 import { ListeUserComponent } from '../liste-user/liste-user.component';
 
@@ -10,7 +10,6 @@ import { ListeUserComponent } from '../liste-user/liste-user.component';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
-  @ViewChild(ListeUserComponent) listeUser;
   username: string = sessionStorage.getItem("username");
   roles: any[] = [{
     "v": 1,
@@ -25,70 +24,73 @@ export class UserProfileComponent implements OnInit {
     "v": 4,
     "d": "client"
   }];
+  act:number=1;
   types: number = parseInt(sessionStorage.getItem("types"));
-  keywords: any={
+  keywords: any = {
     username: this.username,
     mail: sessionStorage.getItem("mail"),
     mdp: "",
     types: this.types
   };
 
-  initialisation(){
+  initialisation() {
     if (this.types == 1) {
       const routeParams = this.route.snapshot.paramMap;
       const act = Number(routeParams.get('act'));
-      switch(act){
+      switch (act) {
         case 1:
-          this.keywords= {
+          this.keywords = {
             username: this.username,
             mail: sessionStorage.getItem("mail"),
             mdp: "",
             types: this.types
           };
-        break;
+          break;
         case 2:
-          this.keywords= {
+          this.keywords = {
             username: "",
             mail: "",
             mdp: "",
             types: 1
           };
-        break;
+          break;
         case 3:
-          const u=this.listeUser;
-          this.keywords={
-            username: u.donnee.username,
-            mail: u.donnee.mail,
+          var u = JSON.parse(sessionStorage.getItem("updateUser"));
+          this.keywords = {
+            username: u.username,
+            mail: u.mail,
             mdp: "",
-            types: u.donnee.types
+            types: u.types
           }
           break;
       }
-      return act;
+      this.act=act;
     }
   }
 
-  constructor(private route: ActivatedRoute,private service:UserService,private router: Router) {
-   
-  }
-
-  ngOnInit() {
+  constructor(private route: ActivatedRoute, private service: UserService, private router: Router) {
     this.initialisation();
   }
 
-  modif(){
-    var donnee={
-      id:this.listeUser.donnee._id,
-      username:this.keywords.username,
-      mail:this.keywords.mail,
-      mdp:this.keywords.mdp,
-      types:this.keywords.types
+  ngOnInit() {
+
+  }
+
+  modif() {
+    var userUpdate = JSON.parse(sessionStorage.getItem("updateUser"));
+    var donnee = {
+      id: userUpdate._id,
+      username: this.keywords.username,
+      mail: this.keywords.mail,
+      mdp: this.keywords.mdp,
+      types: this.keywords.types
     }
+    console.log(donnee);
     const obs = {
-      next: (x) =>{
-        if(x.reponse=="ok"){
+      next: (x) => {
+        if (x.reponse == "ok") {
           this.router.navigate(['/liste-user']);
-        }else{
+        } else {
           alert(x.message);
         }
       },
@@ -98,21 +100,21 @@ export class UserProfileComponent implements OnInit {
   }
 
   update() {
-    var donnee={
-      id:sessionStorage.getItem("id"),
-      username:this.keywords.username,
-      mail:this.keywords.mail,
-      mdp:this.keywords.mdp,
-      types:this.keywords.types
+    var donnee = {
+      id: sessionStorage.getItem("id"),
+      username: this.keywords.username,
+      mail: this.keywords.mail,
+      mdp: this.keywords.mdp,
+      types: this.keywords.types
     }
     const obs = {
-      next: (x) =>{
-        if(x.reponse=="ok"){
-          sessionStorage.setItem("id",donnee.id);
-          sessionStorage.setItem("username",donnee.username);
-          sessionStorage.setItem("mail",donnee.mail);
-          sessionStorage.setItem("types",donnee.types);
-        }else{
+      next: (x) => {
+        if (x.reponse == "ok") {
+          sessionStorage.setItem("id", donnee.id);
+          sessionStorage.setItem("username", donnee.username);
+          sessionStorage.setItem("mail", donnee.mail);
+          sessionStorage.setItem("types", donnee.types);
+        } else {
           alert(x.message);
         }
       },
@@ -121,12 +123,12 @@ export class UserProfileComponent implements OnInit {
     this.service.update(donnee).subscribe(obs);
   }
 
-  insert(){
+  insert() {
     const obs = {
-      next: (x) =>{
-        if(x.reponse=="ok"){
+      next: (x) => {
+        if (x.reponse == "ok") {
           this.router.navigate(['/liste-user']);
-        }else{
+        } else {
           alert(x.message);
         }
       },
