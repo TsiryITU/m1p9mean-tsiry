@@ -29,4 +29,9 @@ export class UserService {
     var url = this.url + "/user/findAll";
     return this.http.get(url);
   }
+
+  findLivreur(){
+    var url = this.url + "/user/find/livreur";
+    return this.http.get(url);
+  }
 }

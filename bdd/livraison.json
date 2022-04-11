@@ -1,0 +1,44 @@
+[
+    {
+        "_id": 1,
+        "id_utilisateur": 3,
+        "date": {
+            "$date": "2022-03-09T11:00:00Z"
+        },
+        "commandes": [
+            {
+                "id_commande": 1,
+                "lieu": "Bio 33",
+                "lieu_resto": "lieu1",
+                "etat":0,
+                "plats": [
+                    {
+                        "nom":"plat1",
+                        "quantite":3
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "_id": 2,
+        "id_utilisateur": 3,
+        "date": {
+            "$date": "2022-03-09T11:00:00Z"
+        },
+        "commandes": [
+            {
+                "id_commande": 2,
+                "lieu": "Bio 33",
+                "lieu_resto": "lieu1",
+                "etat":1,
+                "plats": [
+                    {
+                        "nom":"plat1",
+                        "quantite":3
+                    }
+                ]
+            }
+        ]
+    }
+]

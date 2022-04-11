@@ -6,6 +6,34 @@ const { uri, database } = require('../modules/variable')
 console.log(uri);
 
 module.exports = {
+
+    findLivreur:(req,res)=>{
+        MongoClient.connect(uri, function (err, db) {
+            var data = {
+                users: null,
+                reponse: "ok",
+                erreur: ""
+            };
+            if (err) {
+                data.reponse = "not ok";
+                data.erreur = err.message;
+                res.send(JSON.stringify(data));
+            } else {
+                var dbo = db.db(database);
+                dbo.collection("utilisateur").find({types:3}, { projection: { mdp: 0 } }).toArray(function (err, result) {
+                    if (err) {
+                        data.reponse = "not ok";
+                        data.erreur = err.message;
+                    } else {
+                        data.users = result;
+                    }
+                    res.send(JSON.stringify(data));
+                    db.close();
+                });
+            }
+        });
+    },
+
     login: (req, res) => {
         MongoClient.connect(uri, function (err, db) {
             var data = {
@@ -25,12 +53,17 @@ module.exports = {
                         data.reponse = "not ok";
                         data.erreur = err.message;
                     } else {
-                        data.user = {
-                            id: result._id,
-                            username: result.username,
-                            mail: result.mail,
-                            types: result.types
-                        };
+                        if(result!=null){
+                            data.user = {
+                                id: result._id,
+                                username: result.username,
+                                mail: result.mail,
+                                types: result.types
+                            };
+                        }else{
+                            data.reponse = "not ok";
+                            data.erreur = "verify your login";
+                        }
                     }
                     res.send(JSON.stringify(data));
                     db.close();

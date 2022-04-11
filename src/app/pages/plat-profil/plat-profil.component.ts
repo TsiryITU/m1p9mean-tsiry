@@ -58,7 +58,7 @@ export class PlatProfilComponent implements OnInit {
   update(){
     const obs = {
       next: (x) =>{
-        if(x.response=="ok"){
+        if(x.reponse=="ok"){
           this.router.navigate(['/liste-plat']);
         }else{
           alert(x.message);
@@ -72,7 +72,7 @@ export class PlatProfilComponent implements OnInit {
   insert(){
     const obs = {
       next: (x) =>{
-        if(x.response=="ok"){
+        if(x.reponse=="ok"){
           this.router.navigate(['/liste-plat']);
         }else{
           alert(x.message);

@@ -1,0 +1,80 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12 mb-5 mb-xl-12">
+                <div class="card bg-gradient-default shadow">
+                    <div class="card-header bg-transparent">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h6 class="text-uppercase text-light ls-1 mb-1">Les commandes a livrer</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row" *ngFor="let l of livraisons;let i=index">
+                            <div class="col-xl-12 col-lg-12">
+                                <div class="card card-stats mb-4 mb-xl-12">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <h5 class="card-title text-uppercase text-muted mb-0">Date</h5>
+                                                <span class="h2 font-weight-bold mb-0">{{l.date.split("T")[0]+"
+                                                    "+l.date.split("T")[1].split(".")[0]}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top: 10px;">
+                                            <div class="col">
+                                                <h5 class="card-title text-uppercase text-muted mb-0">Liste des
+                                                    commandes
+                                                </h5>
+                                            </div>
+                                        </div>
+                                        <div  *ngFor="let commande of l.commandes;let y=index">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <h5 class="card-title text-uppercase text-muted mb-0">Lieu</h5>
+                                                    <span class="h2 font-weight-bold mb-0">{{commande.lieu}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <h5 class="card-title text-uppercase text-muted mb-0">Listes des
+                                                        plats</h5>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="card shadow">
+                                                    <div class="table-responsive">
+                                                        <!-- Projects table -->
+                                                        <table class="table align-items-center table-flush">
+                                                            <tbody>
+                                                                <tr *ngFor="let plat of commande.plats">
+                                                                    <th scope="row">
+                                                                        {{plat.nom}}
+                                                                    </th>
+                                                                    <td>
+                                                                        {{plat.quantite}}
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-top: 10px;">
+                                        <div class="col">
+                                            <button class="btn btn-primary" (click)="livrer(i,y)">Livrer</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

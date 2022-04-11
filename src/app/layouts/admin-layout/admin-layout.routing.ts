@@ -11,6 +11,7 @@ import { ListePlatVenteComponent } from 'src/app/pages/liste-plat-vente/liste-pl
 import { PanierComponent } from 'src/app/pages/panier/panier.component';
 import { ListeCommandeComponent } from 'src/app/pages/liste-commande/liste-commande.component';
 import { ListeCommandeLivreComponent } from 'src/app/pages/liste-commande-livre/liste-commande-livre.component';
+import { LivraisonComponent } from 'src/app/pages/livraison/livraison.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard', component: DashboardComponent },
@@ -21,8 +22,9 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'plat-profil/:act', component: PlatProfilComponent },
     { path: 'plat-profil/:act/:id', component: PlatProfilComponent },
     { path: 'liste-resto', component: ListeRestoComponent },
-    { path: 'liste-plat/:id', component: ListePlatVenteComponent },
+    { path: 'liste-plat/:id/:lieu', component: ListePlatVenteComponent },
     { path: 'panier', component: PanierComponent },
     { path: 'commande/resto', component: ListeCommandeComponent },
     { path: 'commande/admin', component: ListeCommandeLivreComponent },
+    { path: 'livraison', component: LivraisonComponent },
 ];

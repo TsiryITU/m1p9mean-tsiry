@@ -8,10 +8,10 @@ import { LoginService } from 'src/app/service/login.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, OnDestroy {
-  keywords:any;
+  keywords: any;
   erreur: string = '';
   constructor(private service: LoginService, private route: Router) {
-    this.keywords = {mail:'admin@mail.com', mdp:'admin'};
+    this.keywords = { mail: 'admin@mail.com', mdp: 'admin' };
     sessionStorage.clear();
   }
 
@@ -19,34 +19,34 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy() {
   }
-  login(){
+  login() {
     console.log(this.keywords);
     const obs = {
-      next: (x) =>{
-        if(x.reponse=="ok" && x.erreur=="" && x.user!=null){
-          var user=x.user;
-          sessionStorage.setItem("id",user.id);
-          sessionStorage.setItem("username",user.username);
-          sessionStorage.setItem("mail",user.mail);
-          sessionStorage.setItem("types",user.types);
-          switch(user.types){
-          case 1:
-            this.route.navigate(['/user-profile/1']);
-            break;
-          case 2:
-            this.route.navigate(['/resto-profil']);
-            break;
-          case 3:
-            alert("ok livreur");
-            break;
-          case 4:
-            this.route.navigate(['/liste-resto']);
-            break;
-          default:
-            alert("there is an error");
+      next: (x) => {
+        if (x.reponse == "ok" && x.erreur == "" && x.user != null) {
+          var user = x.user;
+          sessionStorage.setItem("id", user.id);
+          sessionStorage.setItem("username", user.username);
+          sessionStorage.setItem("mail", user.mail);
+          sessionStorage.setItem("types", user.types);
+          switch (user.types) {
+            case 1:
+              this.route.navigate(['/user-profile/1']);
+              break;
+            case 2:
+              this.route.navigate(['/resto-profil']);
+              break;
+            case 3:
+              this.route.navigate(['/livraison']);
+              break;
+            case 4:
+              this.route.navigate(['/liste-resto']);
+              break;
+            default:
+              alert("there is an error");
           }
         }
-        else{
+        else {
           alert("profil not found");
         }
       },

@@ -78,15 +78,21 @@ module.exports = {
             else {
                 var dbo = db.db(database);
                 var donnee = req.body;
+                console.log(donnee);
                 let id = -1;
                 dbo.collection('counters').findOneAndUpdate({ _id: "id_commande" }, { $inc: { sequence_value: 1 } }, { upsert: true, returnOriginal: false },
                     function (err, result) {
                         id = result.value.sequence_value;
                         var objet = {
                             _id: id,
-                            date: Date.now,
+                            "date": new Date(Date.now()),
                             lieu: donnee.lieu,
-                            id_restaurant: donnee.id_restaurant,
+                            id_utilisateur:donnee.id_utilisateur,
+                            id_resto: donnee.id_restaurant,
+                            lieu_resto:donnee.lieu_resto,
+                            frais:donnee.frais,
+                            prixT:donnee.prixT,
+                            etat:0,
                             plats: donnee.plats
                         };
                         dbo.collection("commande").insertOne(objet, function (err, result) {

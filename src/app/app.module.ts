@@ -21,6 +21,8 @@ import { ListePlatVenteComponent } from './pages/liste-plat-vente/liste-plat-ven
 import { PanierComponent } from './pages/panier/panier.component';
 import { ListeCommandeComponent } from './pages/liste-commande/liste-commande.component';
 import { ListeCommandeLivreComponent } from './pages/liste-commande-livre/liste-commande-livre.component';
+import { ListeLivraisonComponent } from './liste-livraison/liste-livraison.component';
+import { LivraisonComponent } from './pages/livraison/livraison.component';
 
 
 @NgModule({
@@ -45,7 +47,9 @@ import { ListeCommandeLivreComponent } from './pages/liste-commande-livre/liste-
     ListePlatVenteComponent,
     PanierComponent,
     ListeCommandeComponent,
-    ListeCommandeLivreComponent
+    ListeCommandeLivreComponent,
+    ListeLivraisonComponent,
+    LivraisonComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

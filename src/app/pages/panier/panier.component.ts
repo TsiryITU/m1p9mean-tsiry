@@ -12,6 +12,7 @@ export class PanierComponent implements OnInit {
   nbreT: 0;
   prixT: 0;
   lieu: '';
+  frais:number=5000;
   constructor(private service: RestoService,private router:Router) {
     this.initialisation();
     this.calculTotal();
@@ -19,30 +20,35 @@ export class PanierComponent implements OnInit {
 
   annulerPanier(id: number) {
     this.plats.splice(id, 1);
-    console.log(this.plats);
     sessionStorage.setItem("panier", JSON.stringify(this.plats));
     this.calculTotal();
   }
 
   validerPanier() {
     if (this.plats.length > 0) {
-      var plat = Array<{ nom: String, quantite: Number, prixT: Number }>();
+      var plat = Array<{ nom: String, quantite: Number,prixA:Number, prixT: Number }>();
       this.plats.forEach(element => {
         let p = {
           nom: element.nom,
-          quantite: element.nbre,
+          quantite: element.quantite,
+          prixA:element.prixA,
           prixT: element.prixT
         }
         plat.push(p);
       });
       var donnee = {
         lieu: this.lieu,
-        id_restaurant: this.plats[0].id_restaurant,
+        id_utilisateur:parseInt(sessionStorage.getItem("id")),
+        id_restaurant: this.plats[0].id_resto,
+        lieu_resto:this.plats[0].lieu_resto,
+        frais:this.frais,
+        prixT:this.prixT,
         plats: plat
       };
+      console.log(donnee);
       const obs = {
         next: (x) => {
-          if (x.response == "ok") {
+          if (x.reponse == "ok") {
             sessionStorage.removeItem("panier");
             this.router.navigate(['/liste-resto']);
           } else {
@@ -74,7 +80,7 @@ export class PanierComponent implements OnInit {
     this.prixT = 0;
     this.plats.forEach(element => {
       this.nbreT += element.quantite;
-      this.prixT += element.prixT;
+      this.prixT += element.prixT+this.frais;
     });
   }
 }

@@ -1,4 +1,4 @@
-const { login,insert,update, findAll } = require('../../../controller/user.controller')
+const { login,insert,update, findAll,findLivreur } = require('../../../controller/user.controller')
 
 const UserRouter = (url, app) => {
     app.get(`${url}/all`, findAll)
@@ -6,6 +6,7 @@ const UserRouter = (url, app) => {
     app.post(`${url}/user/insert`, insert)
     app.post(`${url}/user/update`, update)
     app.get(`${url}/user/findAll`, findAll)
+    app.get(`${url}/user/find/livreur`, findLivreur)
 }
 
 module.exports = UserRouter

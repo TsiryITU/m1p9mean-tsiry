@@ -86,7 +86,7 @@ export class UserProfileComponent implements OnInit {
     }
     const obs = {
       next: (x) =>{
-        if(x.response=="ok"){
+        if(x.reponse=="ok"){
           this.router.navigate(['/liste-user']);
         }else{
           alert(x.message);
@@ -107,7 +107,7 @@ export class UserProfileComponent implements OnInit {
     }
     const obs = {
       next: (x) =>{
-        if(x.response=="ok"){
+        if(x.reponse=="ok"){
           sessionStorage.setItem("id",donnee.id);
           sessionStorage.setItem("username",donnee.username);
           sessionStorage.setItem("mail",donnee.mail);
@@ -124,7 +124,7 @@ export class UserProfileComponent implements OnInit {
   insert(){
     const obs = {
       next: (x) =>{
-        if(x.response=="ok"){
+        if(x.reponse=="ok"){
           this.router.navigate(['/liste-user']);
         }else{
           alert(x.message);

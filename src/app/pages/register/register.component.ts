@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
     };
     const obs = {
       next: (x) => {
-        if (x.response == "ok") {
+        if (x.reponse == "ok") {
           this.router.navigate(['/login']);
         } else {
           alert(x.message);

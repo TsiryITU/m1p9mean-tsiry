@@ -13,8 +13,11 @@ export class ListePlatVenteComponent implements OnInit {
   nomPlat = '';
   prixV = 0;
   prixT = 0;
+  prixA=0;
+  prixAT=0;
   nbre = 0;
   id = -1;
+  lieu_resto:string='';
   constructor(private route: ActivatedRoute, private service: RestoService) {
     this.initialisation();
   }
@@ -25,6 +28,7 @@ export class ListePlatVenteComponent implements OnInit {
   initialisation() {
     const routeParams = this.route.snapshot.paramMap;
     var id = parseInt(routeParams.get('id'));
+    this.lieu_resto=routeParams.get('lieu');
     const obs = {
       next: (x) => {
         console.log(x);
@@ -41,6 +45,7 @@ export class ListePlatVenteComponent implements OnInit {
   openPopup(data: number) {
     this.nomPlat = this.plats[data].nom;
     this.prixV = this.plats[data].prixV;
+    this.prixA=this.plats[data].prixA;
     this.id = data;
     this.displayStyle = "block";
     console.log(data);
@@ -61,14 +66,15 @@ export class ListePlatVenteComponent implements OnInit {
       const routeParams = this.route.snapshot.paramMap;
       var id = parseInt(routeParams.get('id'));
       if (sessionStorage.getItem("panier") == null) {
-
         let donnee = [{
           id_resto: id,
+          lieu_resto:this.lieu_resto,
           id: this.id,
           nom: this.nomPlat,
           prixU:this.prixV,
           quantite: this.nbre,
-          prixT: this.prixT
+          prixT: this.prixT,
+          prixA:this.prixAT
         }]
         sessionStorage.setItem("panier", JSON.stringify(donnee));
       } else {
@@ -78,27 +84,32 @@ export class ListePlatVenteComponent implements OnInit {
             if (element.id == this.id) {
               element.quantite = this.nbre;
               element.prixT = this.prixT;
+              element.prixA=this.prixAT
               sessionStorage.setItem("panier", JSON.stringify(donnee));
               return true;
             }
           });
           donnee.push({
             id_resto: id,
+            lieu_resto:this.lieu_resto,
             id: this.id,
             nom: this.nomPlat,
             prixU:this.prixV,
             quantite: this.nbre,
-            prixT: this.prixT
+            prixT: this.prixT,
+            prixA:this.prixAT
           });
           sessionStorage.setItem("panier", JSON.stringify(donnee));
         } else {
           let donnee = [{
             id_resto: id,
+            lieu_resto:this.lieu_resto,
             id: this.id,
             nom: this.nomPlat,
             prixU:this.prixV,
             quantite: this.nbre,
-            prixT: this.prixT
+            prixT: this.prixT,
+            prixA:this.prixAT
           }]
           sessionStorage.setItem("panier", JSON.stringify(donnee));
         }
@@ -110,5 +121,6 @@ export class ListePlatVenteComponent implements OnInit {
 
   calculPrix() {
     this.prixT = this.prixV * this.nbre;
+    this.prixAT=this.prixA*this.nbre;
   }
 }

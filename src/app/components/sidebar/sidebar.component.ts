@@ -33,6 +33,12 @@ switch (parseInt(sessionStorage.getItem("types"))) {
       { path: '/panier', title: 'Panier', icon: 'ni-basket text-yellow', class: '' }
     ];
     break;
+  case 3:
+      r=[
+        { path: '/user-profile/1', title: 'User profile', icon: 'ni-single-02 text-yellow', class: '' },
+        { path: '/livraison', title: 'Panier', icon: 'ni-cart text-yellow', class: '' }
+      ];
+      break;
 }
 
 export const ROUTES: RouteInfo[] = r;

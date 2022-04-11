@@ -34,6 +34,6 @@ export class ListeRestoComponent implements OnInit {
   }
 
   voirPlat(id:number){
-    this.router.navigate(['/liste-plat/'+id]);
+    this.router.navigate(['/liste-plat/'+this.restos[id]._id+'/'+this.restos[id].lieu]);
   }
 }

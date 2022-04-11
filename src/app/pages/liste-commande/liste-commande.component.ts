@@ -7,23 +7,23 @@ import { CommandeService } from 'src/app/service/commande.service';
   styleUrls: ['./liste-commande.component.scss']
 })
 export class ListeCommandeComponent implements OnInit {
-  commandes:any[];
-  constructor(private service:CommandeService) {
+  commandes: any[];
+  constructor(private service: CommandeService) {
     this.initialisation();
-   }
+  }
 
   ngOnInit(): void {
   }
 
-  initialisation(){
-    var data=JSON.parse(sessionStorage.getItem("resto"));
+  initialisation() {
+    var data = JSON.parse(sessionStorage.getItem("resto"));
     const obs = {
       next: (x) => {
         console.log(x);
         if (x.reponse == "ok") {
           console.log(x.commandes);
           if (x.commandes != null) {
-            this.commandes=x.commandes;
+            this.commandes = x.commandes;
           }
         } else {
           alert(x.message);
@@ -36,8 +36,25 @@ export class ListeCommandeComponent implements OnInit {
     this.service.commandeResto(data._id).subscribe(obs);
   }
 
-  livrer(id:number){
-
+  livrer(id: number) {
+    var donnee = {
+      id: this.commandes[id]._id,
+      etat: 1
+    };
+    const obs = {
+      next: (x) => {
+        console.log(x);
+        if (x.reponse == "ok") {
+          this.initialisation();
+        } else {
+          alert(x.message);
+        }
+      },
+      error: (err: Error) => {
+        alert(err.message);
+      }
+    };
+    this.service.aLivrer(donnee).subscribe(obs);
   }
 
 }

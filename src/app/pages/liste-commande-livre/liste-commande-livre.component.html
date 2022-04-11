@@ -1,1 +1,138 @@
-<p>liste-commande-livre works!</p>
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-6 mb-5 mb-xl-0">
+                <div class="card bg-gradient-default shadow">
+                    <div class="card-header bg-transparent">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h6 class="text-uppercase text-light ls-1 mb-1">Les commandes a livrer</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row" *ngFor="let commande of commandesALivrer;let i=index">
+                            <div class="col-xl-12 col-lg-6">
+                                <div class="card card-stats mb-4 mb-xxl-0">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <h5 class="card-title text-uppercase text-muted mb-0">Date</h5>
+                                                <span class="h2 font-weight-bold mb-0">{{commande.date.split("T")[0]+"
+                                                    "+commande.date.split("T")[1].split(".")[0]}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top: 10px;">
+                                            <div class="col">
+                                                <h5 class="card-title text-uppercase text-muted mb-0">Lieu</h5>
+                                                <span class="h2 font-weight-bold mb-0">{{commande.lieu}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top: 10px;">
+                                            <div class="col">
+                                                <h5 class="card-title text-uppercase text-muted mb-0">Liste des plats
+                                                </h5>
+                                                <div class="card shadow">
+                                                    <div class="table-responsive">
+                                                        <!-- Projects table -->
+                                                        <table class="table align-items-center table-flush">
+                                                            <tbody>
+                                                                <tr *ngFor="let plat of commande.plats">
+                                                                    <th scope="row">
+                                                                        {{plat.nom}}
+                                                                    </th>
+                                                                    <td>
+                                                                        {{plat.quantite}}
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top: 10px;">
+                                            <div class="col">
+                                                <button class="btn btn-primary" (click)="livrer(i)">Livrer</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6">
+                <div class="card shadow">
+                    <div class="card-header bg-transparent">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h6 class="text-uppercase text-muted ls-1 mb-1">Livreur</h6>
+                                <select class="form-control form-control-alternative" [(ngModel)]="indiceLivreur"
+                                    (change)="changeLivreur()">
+                                    <option *ngFor="let livreur of livreurs,let i=index" value={{i}}>
+                                        {{livreur.username}}</option>
+                                </select>
+                                <button class="btn btn-primary" style="margin-top: 10px;" (click)="valider()">Valider la
+                                    livraison</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row" *ngFor="let commande of commandesLivrer;let i=index">
+                            <div class="col-xl-12 col-lg-6">
+                                <div class="card card-stats mb-4 mb-xxl-0" style="background-color: #CFCDCD;">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <h5 class="card-title text-uppercase text-muted mb-0">Date</h5>
+                                                <span class="h2 font-weight-bold mb-0">{{commande.date.split("T")[0]+"
+                                                    "+commande.date.split("T")[1].split(".")[0]}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top: 10px;">
+                                            <div class="col">
+                                                <h5 class="card-title text-uppercase text-muted mb-0">Lieu</h5>
+                                                <span class="h2 font-weight-bold mb-0">{{commande.lieu}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top: 10px;">
+                                            <div class="col">
+                                                <h5 class="card-title text-uppercase text-muted mb-0">Liste des plats
+                                                </h5>
+                                                <div class="card shadow">
+                                                    <div class="table-responsive">
+                                                        <table class="table align-items-center table-flush">
+                                                            <tbody>
+                                                                <tr *ngFor="let plat of commande.plats">
+                                                                    <th scope="row">
+                                                                        {{plat.nom}}
+                                                                    </th>
+                                                                    <td>
+                                                                        {{plat.quantite}}
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top: 10px;">
+                                            <div class="col">
+                                                <button class="btn btn-primary">
+                                                    Annuler
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
