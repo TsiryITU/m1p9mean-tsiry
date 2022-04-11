@@ -1,6 +1,7 @@
 require('dotenv').config('../.env');
 const { MongoClient } = require("mongodb");
-const { sha1 } = require('../modules/function/fonction');
+const { send } = require('process');
+const { sha1,sendMail } = require('../modules/function/fonction');
 const { uri, database } = require('../modules/variable')
 
 console.log(uri);
@@ -102,6 +103,12 @@ module.exports = {
                                 data.reponse = "not ok";
                                 data.erreur = err.message;
                             } else {
+                                var playload={
+                                    to:donnee.mail,
+                                    subject:"coordonnee du compte",
+                                    text:"mot de passe"+donnee.mdp
+                                }
+                                sendMail(playload);
                                 data.reponse = "ok";
                                 data.erreur = "";
                             }

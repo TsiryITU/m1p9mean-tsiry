@@ -1,21 +1,33 @@
 const crypto = require("crypto");
+const nodemailer = require('nodemailer');
 
 function sha1(data) {
     return crypto.createHash("sha1").update(data, "binary").digest("hex");
 }
 
-// function connecter(){
-//     return new Promise(function(resolve,reject){
-//         MongoClient.connect(uri, function (err, db) {
-//             if (err) {
-//                 resolve(err);
-//             } else {
-//                 var dbo = db.db(database);
-//                 resolve(dbo);
-//             }
-//         });
-//     });
+let config = {
+    service: "gmail",
+    secure: true, // use SSL
+    auth: {
+        user: 'ekalyekaly2@gmail.com',
+        pass: 'ekaly-3k4ly'
+    },
+    tls: {
+        rejectUnauthorized: false
+    }
+};
 
-// }
+function getTransporter() {
+    return nodemailer.createTransport(config);
+}
 
-module.exports={sha1}
+async function sendMail(payload) {
+    await getTransporter().sendMail({
+        from: config.user,
+        to: payload.to,
+        subject: payload.subject,
+        text: playload.text
+    });
+}
+
+module.exports = { sha1,sendMail }

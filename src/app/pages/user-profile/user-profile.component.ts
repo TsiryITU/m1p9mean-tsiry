@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { RestoService } from 'src/app/service/resto.service';
 import { UserService } from 'src/app/service/user.service';
 import { ListeUserComponent } from '../liste-user/liste-user.component';
 
@@ -68,7 +69,7 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-  constructor(private route: ActivatedRoute, private service: UserService, private router: Router) {
+  constructor(private route: ActivatedRoute, private service: UserService, private router: Router,private serviceResto:RestoService) {
     this.initialisation();
   }
 
@@ -124,16 +125,31 @@ export class UserProfileComponent implements OnInit {
   }
 
   insert() {
-    const obs = {
-      next: (x) => {
-        if (x.reponse == "ok") {
-          this.router.navigate(['/liste-user']);
-        } else {
-          alert(x.message);
-        }
-      },
-      error: (err: Error) => alert(err.message),
-    };
-    this.service.insert(this.keywords).subscribe(obs);
+    if(this.keywords.types!=2){
+      const obs = {
+        next: (x) => {
+          if (x.reponse == "ok") {
+            this.router.navigate(['/liste-user']);
+          } else {
+            alert(x.message);
+          }
+        },
+        error: (err: Error) => alert(err.message),
+      };
+      this.service.insert(this.keywords).subscribe(obs);
+    }
+    else{
+      const obs = {
+        next: (x) => {
+          if (x.reponse == "ok") {
+            this.router.navigate(['/liste-user']);
+          } else {
+            alert(x.message);
+          }
+        },
+        error: (err: Error) => alert(err.message),
+      };
+      this.serviceResto.insert(this.keywords).subscribe(obs);
+    }
   }
 }

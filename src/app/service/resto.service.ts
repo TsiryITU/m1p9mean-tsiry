@@ -44,4 +44,9 @@ export class RestoService {
     var url = this.url + "/resto/findAll";
     return this.http.get(url);
   }
+
+  insert(data:any){
+    var url = this.url + "/resto/insert";
+    return this.http.post(url, data);
+  }
 }
